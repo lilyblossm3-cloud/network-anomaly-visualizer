@@ -1,0 +1,16 @@
+import pandas as pd
+df=pd.read_csv("data/Wednesday-workingHours.pcap_ISCX.csv")
+
+print("Shape:", df.shape)
+print("\nColumn names:")
+print(df.columns.tolist())
+print("Label" in df.columns)
+print(" Label" in df.columns)
+print(df.dtypes.value_counts())
+print(df.isin([float('inf'), float('-inf')]).sum().sum())
+inf_mask = df.isin([float('inf'), float('-inf')])
+cols_with_inf = inf_mask.sum()
+print(cols_with_inf[cols_with_inf > 0])
+null_counts = df.isnull().sum()
+print(null_counts[null_counts > 0])
+print(df['Label'].str.strip().value_counts())
